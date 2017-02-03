@@ -4,7 +4,7 @@
 
 ## Description
 
-Docker container for PHPCensor with installed, configured source code 
+[Docker container for PHPCensor](https://hub.docker.com/r/ket4yii/php-censor/) with installed, configured source code 
 and dependencies, configurable by envs config.yml and php-fpm as entrypoint.
 
 ## How to use
