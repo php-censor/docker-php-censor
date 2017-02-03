@@ -1,4 +1,6 @@
 # PHPCensor docker image
+![Image stars](https://img.shields.io/docker/stars/ket4yii/php-censor.svg)
+![Image pulls](https://img.shields.io/docker/pulls/ket4yii/php-censor.svg)
 
 ## Description
 
