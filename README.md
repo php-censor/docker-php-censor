@@ -13,7 +13,7 @@ Sample run command (all needed containers like beanstald, database and webserver
 
 ```
 docker network create phpcensor
-docker run -d -p 9000:9000 --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e SITE_URL=http://phpcensor.local -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor # Port exposing is not necessary you can just add container to webserver/beanstalkd containers network(or link it)
+docker run -d -p 9000:9000 --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e SITE_URL=http://phpcensor.local -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor ket4yii/php-censor # Port exposing is not necessary you can just add container to webserver/beanstalkd containers network(or link it)
 ```
 
 Remeber, this container includes only FPM, you should run database, 
