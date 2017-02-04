@@ -21,7 +21,6 @@ php-censor:
     smtp_port: $SMTP_PORT
     smtp_username: $SMTP_USER
     smtp_password: $SMTP_PASSWORD
-    from_address: $SMTP_FROM
     default_mailto_address: $SMTP_DEFAULTTO
     smtp_encryption: $SMTP_ENCRYPT
   queue:
@@ -48,4 +47,3 @@ php-censor:
           port: $LDAP_PORT
           base_dn: $LDAP_BASE_DN
           mail_attribute: $LDAP_MAIL_ATTRIBUTE
-
