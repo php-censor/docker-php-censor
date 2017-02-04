@@ -3,14 +3,14 @@ b8:
     servers:
       read:
         - host: $LOCAL_DB_HOST
-          port: $DB_PORT
+          port: $LOCAL_DB_PORT
       write:
         - host: $LOCAL_DB_HOST
-          port: $DB_PORT
+          port: $LOCAL_DB_PORT
     type: $DB_TYPE
     name: $DB_NAME
-    username: $DB_USERNAME
-    password: $DB_PASSWORD
+    username: $DB_USER
+    password: $DB_PASS
 php-censor:
   language: en
   per_page: 10
