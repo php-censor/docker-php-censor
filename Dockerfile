@@ -7,7 +7,7 @@ WORKDIR /var/www/html
 RUN docker-php-ext-install pdo pdo_mysql 
 
 RUN apk update && \
-    apk add git openssh gettext && \
+    apk add git nginx openssh gettext && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 
@@ -16,6 +16,7 @@ RUN composer install
 
 ADD entrypoint.sh /
 ADD config.tmpl.yml /
+ADD nginx.conf /etc/nginx/nginx.conf
 
 ENV DB_HOST=localhost
 ENV DB_TYPE=mysql
