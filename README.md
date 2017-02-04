@@ -17,7 +17,7 @@ docker run -d -p 8080:80 --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e D
 ```
 
 Remeber, this container includes only FPM and nginx, you should run database, 
-beanstalkd and workers to use it(you can see how to configure webserver [here](https://github.com/corpsee/php-censor/blob/master/docs/en/virtual_host.md)). Also you can use docker-compose file which will be described below.
+beanstalkd and workers to use it. Also you can use docker-compose file which will be described below.
 
 ### Configuration
 
