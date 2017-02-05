@@ -15,6 +15,7 @@ services:
     - ./env/phpcensor.env
   psql:
     image: "postgres"
+    user: postgres
     networks:
       default:
         aliases:
