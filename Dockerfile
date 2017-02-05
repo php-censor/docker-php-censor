@@ -4,12 +4,12 @@ MAINTAINER Alexey Boyko <ket4yiit@gmail.com>
 
 WORKDIR /var/www/html
 
-RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql ldap
-
 RUN apk update && \
-    apk add git nginx openssh gettext && \
+    apk add git nginx openssh postgresql-dev openldap-dev gettext && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
+
+RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql ldap
 
 RUN git clone https://github.com/corpsee/php-censor.git .
 RUN composer install
