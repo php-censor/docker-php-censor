@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   phpcensor:
-    image: "4d682b2b" # "ket4yii/php-censor"
+    image: "ket4yii/php-censor"
     ports:
     - "80:80"
     networks:
