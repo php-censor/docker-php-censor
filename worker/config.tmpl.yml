@@ -1,0 +1,49 @@
+b8:
+  database:
+    servers:
+      read:
+        - host: $LOCAL_DB_HOST
+          port: $LOCAL_DB_PORT
+      write:
+        - host: $LOCAL_DB_HOST
+          port: $LOCAL_DB_PORT
+    type: $DB_TYPE
+    name: $DB_NAME
+    username: $DB_USER
+    password: $DB_PASS
+php-censor:
+  language: en
+  per_page: 10
+  url:      '$SITE_URL'
+  email_settings:
+    from_address: $SMTP_FROM
+    smtp_address: $SMTP_HOST
+    smtp_port: $SMTP_PORT
+    smtp_username: $SMTP_USER
+    smtp_password: $SMTP_PASSWORD
+    default_mailto_address: $SMTP_DEFAULTTO
+    smtp_encryption: $SMTP_ENCRYPT
+  queue:
+    host: $BEANSTALK_HOST
+    name: $BEANSTALK_QUEUE_NAME
+    lifetime: 600
+  github:
+    token: $GITHUB_TOKEN
+    comments:
+      commit: false
+      pull_request: false
+  build:
+    remove_builds: true
+  security:
+    disable_auth: false
+    default_user_id: 1
+    auth_providers:
+      internal:
+        type: internal
+      ldap:
+        type: ldap
+        data:
+          host: $LDAP_HOST
+          port: $LDAP_PORT
+          base_dn: $LDAP_BASE_DN
+          mail_attribute: $LDAP_MAIL_ATTRIBUTE
