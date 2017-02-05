@@ -23,10 +23,10 @@ services:
     env_file:
     - ./env/database.env
     healthcheck:
-      test: ["CMD", "test", "-d", "/var/lib/postgresql/data/base"]
+      test: psql -lqt | cut -d \| -f 1 | grep -qw $$POSTGRES_DB
       interval: 10s
       timeout: 10s
-      retries: 8
+      retries: 3
   queue:
     image: "schickling/beanstalkd"
     networks:
