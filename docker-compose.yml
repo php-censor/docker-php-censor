@@ -1,9 +1,20 @@
 version: '2.1'
 services:
-  phpcensor:
-    image: "ket4yii/php-censor"
+  web:
+    image: "ket4yii/php-censor:web"
     ports:
     - "80:80"
+    networks:
+    - default 
+    depends_on:
+      psql:
+        condition: service_healthy
+      queue:
+        condition: service_started
+    env_file:
+    - ./env/phpcensor.env
+  worker:
+    image: "ket4yii/php-censor:worker"
     networks:
     - default 
     depends_on:
