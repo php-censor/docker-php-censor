@@ -1,0 +1,35 @@
+version: '2.1'
+services:
+  phpcensor:
+    image: "4d682b2b" # "ket4yii/php-censor"
+    ports:
+    - "80:80"
+    networks:
+    - default 
+    depends_on:
+      psql:
+        condition: service_healthy
+      queue:
+        condition: service_started
+    env_file:
+    - ./env/phpcensor.env
+  psql:
+    image: "postgres"
+    networks:
+      default:
+        aliases:
+        - db
+    env_file:
+    - ./env/database.env
+    healthcheck:
+      test: ["CMD", "test", "-d", "/var/lib/postgresql/data/base"]
+      interval: 10s
+      timeout: 10s
+      retries: 8
+  queue:
+    image: "schickling/beanstalkd"
+    networks:
+      default:
+        aliases:
+        - beanstalk
+
