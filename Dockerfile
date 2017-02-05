@@ -20,6 +20,9 @@ ADD entrypoint.sh /
 ADD config.tmpl.yml /
 ADD nginx.conf /etc/nginx/nginx.conf
 
+ENV ADMIN_NAME=admin
+ENV ADMIN_EMAIL=admin@php-censor.local
+ENV ADMIN_PASSWORD=admin
 ENV DB_HOST=localhost
 ENV DB_TYPE=mysql
 ENV DB_NAME=phpcensor

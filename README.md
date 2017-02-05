@@ -84,6 +84,12 @@ php-censor:
 
 ``` 
 
+And specify admin user by these variables:
+
+* ADMIN_NAME (**default: admin**)
+* ADMIN_PASSWORD (**default: admin**)
+* ADMIN_EMAIL (**default: admin@php-censor.local**)
+
 ### Docker compose
 
 In progress
