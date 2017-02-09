@@ -2,7 +2,7 @@ FROM php:7.0.15-fpm-alpine
 
 MAINTAINER Alexey Boyko <ket4yiit@gmail.com>
 
-ENV PHPCENSOR_VERSION=0.7.0
+ENV PHPCENSOR_VERSION=0.8.0
 
 WORKDIR /var/www/html
 
@@ -13,7 +13,8 @@ RUN apk update && \
 
 RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql ldap
 
-RUN git clone https://github.com/corpsee/php-censor.git .
+RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/corpsee/php-censor.git .
+
 RUN composer install
 
 ADD entrypoint.sh /

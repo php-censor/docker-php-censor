@@ -2,7 +2,7 @@ FROM php:7.0.15-alpine
 
 MAINTAINER Alexey Boyko <ket4yiit@gmail.com>
 
-ENV PHPCENSOR_VERSION=0.7.0
+ENV PHPCENSOR_VERSION=0.8.0
 
 WORKDIR /var/www/html
 
@@ -11,7 +11,7 @@ RUN apk update && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 
-RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql
+RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/corpsee/php-censor.git .
 
 RUN git clone https://github.com/corpsee/php-censor.git .
 RUN composer install
