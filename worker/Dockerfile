@@ -13,7 +13,6 @@ RUN apk update && \
 
 RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/corpsee/php-censor.git .
 
-RUN git clone https://github.com/corpsee/php-censor.git .
 RUN composer install
 
 ADD entrypoint.sh /
