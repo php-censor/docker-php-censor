@@ -32,7 +32,7 @@ services:
         aliases:
         - db
     env_file:
-    - ./env/database.env
+    - ./env/postgres.env
     healthcheck:
       test: psql -lqt | cut -d \| -f 1 | grep -qw $$POSTGRES_DB
       interval: 10s
@@ -44,4 +44,3 @@ services:
       default:
         aliases:
         - beanstalk
-
