@@ -16,13 +16,13 @@ docker run -d --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=chan
 Remeber, this container is worker, you should run database, 
 beanstalkd and [web](https://github.com/ket4yii/docker-php-censor/tree/master/worker) to build your projects.
 
+*Also you can install your own dependencies, like php-extensions or composer deps, at start time. See below text for further information.*
+
 ### Configuration
 
 There are two ways how to configure phpcensor:
 
-* Pass environment variables in container.
-* Move your config.yml by docker volume in /var/www/html/app/config.yml.
-
+* Pass environment variables in container.  * Move your config.yml by docker volume in /var/www/html/app/config.yml.  
 By environment variables you can configure these values:
 
 ```
@@ -91,3 +91,16 @@ You don't have to specify all parameters in worker. Minimal list of params is:
 Default values:
 
 In progress
+
+### Installing and extensions in container
+
+You can install your dependencies from script. Just pass it by docker volume to **/docker-init.d/install.sh**. You can install composer dependencies(e.g. plugins for PHPCensor) or php-extensions by *docker-php-ext-install* script(for further information check [official php docker repo](https://hub.docker.com/_/php/)).
+
+#### Example of install.sh
+
+```
+docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) gd mysqli 
+composer require ket4yii/phpci-deployer-plugin:^1.0
+```
+
