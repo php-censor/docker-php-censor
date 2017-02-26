@@ -12,7 +12,7 @@ services:
       queue:
         condition: service_started
     env_file:
-    - ./env/phpcensor.env
+    - ./env/phpcensor.pgsql.env
   worker:
     image: "ket4yii/php-censor:worker"
     networks:
@@ -23,7 +23,7 @@ services:
       queue:
         condition: service_started
     env_file:
-    - ./env/phpcensor.env
+    - ./env/phpcensor.pgsql.env
   psql:
     image: "postgres"
     user: postgres
