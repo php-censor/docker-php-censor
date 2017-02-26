@@ -14,7 +14,17 @@ docker-compose file that is described below to run a whole stack.
 
 ## Docker compose
 
-Docs in progress.
+You can run PHP Censor docker containers by command:
+
+```bash
+cd /path/to/docker-php-censor
+
+# For run PHP Censor with MySQL database
+docker-compose --file ./docker-compose.mysql.yml up
+
+# For run PHP Censor with PostgreSQL database
+docker-compose --file ./docker-compose.pgsql.yml up
+```
 
 ### Requirements
 
