@@ -1,0 +1,24 @@
+version: '2.1'
+services:
+  web:
+    image: "ket4yii/php-censor:web"
+    ports:
+    - "80:80"
+    networks:
+    - default 
+    depends_on:
+      queue:
+        condition: service_started
+  worker:
+    image: "ket4yii/php-censor:worker"
+    networks:
+    - default 
+    depends_on:
+      queue:
+        condition: service_started
+  queue:
+    image: "schickling/beanstalkd"
+    networks:
+      default:
+        aliases:
+        - beanstalk

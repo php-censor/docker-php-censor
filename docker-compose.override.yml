@@ -1,27 +1,15 @@
 version: '2.1'
 services:
   web:
-    image: "ket4yii/php-censor:web"
-    ports:
-    - "80:80"
-    networks:
-    - default 
     depends_on:
       psql:
         condition: service_healthy
-      queue:
-        condition: service_started
     env_file:
     - ./env/phpcensor.pgsql.env
   worker:
-    image: "ket4yii/php-censor:worker"
-    networks:
-    - default 
     depends_on:
       psql:
         condition: service_healthy
-      queue:
-        condition: service_started
     env_file:
     - ./env/phpcensor.pgsql.env
   psql:
@@ -38,9 +26,3 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
-  queue:
-    image: "schickling/beanstalkd"
-    networks:
-      default:
-        aliases:
-        - beanstalk

@@ -19,11 +19,12 @@ You can run PHP Censor docker containers by command:
 ```bash
 cd /path/to/docker-php-censor
 
-# For run PHP Censor with MySQL database
-docker-compose --file ./docker-compose.mysql.yml up
-
 # For run PHP Censor with PostgreSQL database
-docker-compose --file ./docker-compose.pgsql.yml up
+docker-compose up
+
+# For run PHP Censor with MySQL database
+docker-compose -f docker-compose.yml -f docker-compose.mysql.yml up
+
 ```
 
 ### Requirements
