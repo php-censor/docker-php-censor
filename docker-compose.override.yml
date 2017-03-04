@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+  web:
+    depends_on:
+      psql:
+        condition: service_healthy
+    env_file:
+    - ./env/phpcensor.pgsql.env
+  worker:
+    depends_on:
+      psql:
+        condition: service_healthy
+    env_file:
+    - ./env/phpcensor.pgsql.env
+  psql:
+    image: "postgres"
+    user: postgres
+    networks:
+      default:
+        aliases:
+        - db
+    env_file:
+    - ./env/postgres.env
+    healthcheck:
+      test: psql -lqt | cut -d \| -f 1 | grep -qw $$POSTGRES_DB
+      interval: 10s
+      timeout: 10s
+      retries: 3

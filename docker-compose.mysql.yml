@@ -1,0 +1,27 @@
+version: '2.1'
+services:
+  web:
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+    - ./env/phpcensor.mysql.env
+  worker:
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+    - ./env/phpcensor.mysql.env
+  mysql:
+    image: "mysql"
+    networks:
+      default:
+        aliases:
+        - db
+    env_file:
+    - ./env/mysql.env
+    healthcheck:
+      test:     "exit 0"
+      interval: 30s
+      timeout:  30s
+      retries:  1
