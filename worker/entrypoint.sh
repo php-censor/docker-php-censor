@@ -8,6 +8,7 @@ wait_for_external_services() {
     while ! ( nc -w 2 -v "$DB_HOST" "$DB_PORT" < /dev/null && nc -w 2 -v "$BEANSTALK_HOST" $BEANSTALK_DEFAULT_PORT < /dev/null )
     do
       echo "Wait for db and queue"
+      sleep 2
     done
 }
 
