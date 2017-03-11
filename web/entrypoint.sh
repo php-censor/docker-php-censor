@@ -18,10 +18,12 @@ set_args() {
 
     if [[ -z "$DB_PORT" ]]; then
         case "$DB_TYPE" in
-            "pgsql")
-                export DB_PORT=5432;;
-            "mysql")
-                export DB_PORT=3306;;
+            pgsql)
+                export DB_PORT=5432
+                ;;
+            mysql)
+                export DB_PORT=3306
+                ;;
         esac
     fi
 }
