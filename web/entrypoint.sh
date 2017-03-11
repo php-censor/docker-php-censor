@@ -14,7 +14,7 @@ set_args() {
     LOCAL_DB_HOST=$DB_HOST
 
     export DB_HOST=$(echo $LOCAL_DB_HOST | awk -F ":" '{ print $1 }')
-    export DB_PORT=$(echo $LOCAL_DB_HOST | awk -F ":" '{ if (ENVIRON["DB_PORT"] != "") print ENVIRON["DB_PORT"]; else $2 }')
+    export DB_PORT=$(echo $LOCAL_DB_HOST | awk -F ":" '{ if (ENVIRON["DB_PORT"] != "") print ENVIRON["DB_PORT"]; else print $2 }')
 
     if [[ -z "$DB_PORT" ]]; then
         case "$DB_TYPE" in
