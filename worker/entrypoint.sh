@@ -3,7 +3,7 @@ set -eo pipefail
 
 wait_for_external_services()
 {
-    while ! ( nc -w 2 -v $DB_HOST $DB_PORT < /dev/null && nc -w 2 -v $BEANSTALK_HOST 11300 < /dev/null )
+    while ! ( nc -w 2 -v "$DB_HOST" "$DB_PORT" < /dev/null && nc -w 2 -v "$BEANSTALK_HOST" 11300 < /dev/null )
     do
       echo "Wait for db and queue"
     done
@@ -12,10 +12,10 @@ wait_for_external_services()
 set_args() {
     LOCAL_DB_HOST=$DB_HOST
 
-    export DB_HOST=$(echo $LOCAL_DB_HOST | awk -F ":" '{ print $1 }')
-    export DB_PORT=$(echo $LOCAL_DB_HOST | awk -F ":" '{ if (ENVIRON["DB_PORT"] != "") print ENVIRON["DB_PORT"]; else print $2 }')
+    export DB_HOST=$(echo "$LOCAL_DB_HOST" | awk -F ":" '{ print $1 }')
+    export DB_PORT=$(echo "$LOCAL_DB_HOST" | awk -F ":" '{ if (ENVIRON["DB_PORT"] != "") print ENVIRON["DB_PORT"]; else print $2 }')
 
-    if [[ -z "$DB_PORT" ]]; then
+    if [ -z "$DB_PORT" ]; then
         case "$DB_TYPE" in
             pgsql)
                 export DB_PORT=5432
