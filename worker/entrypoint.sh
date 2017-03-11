@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eo pipefail
 
-wait_for_db() 
+wait_for_db()
 {
     while nc -w 2 -v $LOCAL_DB_HOST $LOCAL_DB_PORT < /dev/null > /dev/null 2>&1
     do
@@ -9,12 +9,20 @@ wait_for_db()
       sleep 1
     done
 }
-
 set_args() {
     LOCAL_DB_HOST=$DB_HOST
 
     export DB_HOST=$(echo $LOCAL_DB_HOST | awk -F ":" '{ print $1 }')
     export DB_PORT=$(echo $LOCAL_DB_HOST | awk -F ":" '{ if (ENVIRON["DB_PORT"] != "") print ENVIRON["DB_PORT"]; else $2 }')
+
+    if [[ -z "$DB_PORT" ]]; then
+        case "$DB_TYPE" in
+            "pgsql")
+                export DB_PORT=5432;;
+            "mysql")
+                export DB_PORT=3306;;
+        esac
+    fi
 }
 
 set_args
