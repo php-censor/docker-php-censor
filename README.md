@@ -14,7 +14,25 @@ docker-compose file that is described below to run a whole stack.
 
 ## Docker compose
 
-Docs in progress.
+### How to use
+
+Default way with postgresql database:
+
+```
+docker-compose up -d
+```
+
+Or if you want to use it with mysql(mariadb):
+
+```
+docker-compose -f docker-compose.mysql.yml -d
+```
+
+If you want to up more worker just use this command, when the phpcensor stack is already started(but you can do it on start):
+
+```
+docker-compose scale worker=4
+```
 
 ### Requirements
 

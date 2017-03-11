@@ -4,23 +4,17 @@ services:
     image: "ket4yii/php-censor:web"
     ports:
     - "80:80"
-    depends_on:
-    - db
-    - queue
     env_file:
     - ./env/phpcensor.env
   worker:
     image: "ket4yii/php-censor:worker"
-    depends_on:
-    - db
-    - queue
     env_file:
     - ./env/phpcensor.env
   db:
     image: "postgres"
     user: postgres
     env_file:
-    - ./env/database.env
+    - ./env/database.pgsql.env
   queue:
     image: "schickling/beanstalkd"
     networks:
