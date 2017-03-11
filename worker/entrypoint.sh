@@ -5,8 +5,8 @@ wait_for_db()
 {
     while nc -w 2 -v $LOCAL_DB_HOST $LOCAL_DB_PORT < /dev/null > /dev/null 2>&1
     do
-      sleep 10
       echo "Wait for database"
+      sleep 1
     done
 }
 
