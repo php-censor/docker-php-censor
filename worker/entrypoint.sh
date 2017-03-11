@@ -1,14 +1,14 @@
 #!/bin/sh
 set -eo pipefail
 
-wait_for_db()
+wait_for_external_services()
 {
-    while ! nc -w 2 -v $LOCAL_DB_HOST $LOCAL_DB_PORT < /dev/null > /dev/null 2>&1
+    while ! ( nc -w 2 -v $DB_HOST $DB_PORT < /dev/null && nc -w 2 -v $BEANSTALK_HOST 11300 < /dev/null )
     do
-      echo "Wait for database"
-      sleep 1
+      echo "Wait for db and queue"
     done
 }
+
 set_args() {
     LOCAL_DB_HOST=$DB_HOST
 
@@ -31,7 +31,7 @@ set_args
 
 [ ! -f ./app/config.yml ] && envsubst < /config.tmpl.yml > ./app/config.yml
 
-wait_for_db
+wait_for_external_services
 
 if [ -f /docker-init.d/install.sh ]
 then
