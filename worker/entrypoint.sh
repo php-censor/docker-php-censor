@@ -3,7 +3,7 @@ set -eo pipefail
 
 wait_for_db()
 {
-    while nc -w 2 -v $LOCAL_DB_HOST $LOCAL_DB_PORT < /dev/null > /dev/null 2>&1
+    while ! nc -w 2 -v $LOCAL_DB_HOST $LOCAL_DB_PORT < /dev/null > /dev/null 2>&1
     do
       echo "Wait for database"
       sleep 1
