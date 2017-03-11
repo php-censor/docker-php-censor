@@ -9,8 +9,14 @@ wait_for_db()
     done
 }
 
-export LOCAL_DB_HOST=$(echo $DB_HOST | awk -F ":" '{ print $1 }')
-export LOCAL_DB_PORT=$(echo $DB_HOST | awk -F ":" '{ print $2; }')
+set_args() {
+    LOCAL_DB_HOST=$DB_HOST
+
+    export DB_HOST=$(echo $LOCAL_DB_HOST | awk -F ":" '{ print $1 }')
+    export DB_PORT=$(echo $LOCAL_DB_HOST | awk -F ":" '{ print $2; }')
+}
+
+set_args
 
 [ ! -f ./app/config.yml ] && envsubst < /config.tmpl.yml > ./app/config.yml
 

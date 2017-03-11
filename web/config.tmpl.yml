@@ -2,11 +2,11 @@ b8:
   database:
     servers:
       read:
-        - host: $LOCAL_DB_HOST
-          port: $LOCAL_DB_PORT
+        - host: $DB_HOST
+          port: $DB_PORT
       write:
-        - host: $LOCAL_DB_HOST
-          port: $LOCAL_DB_PORT
+        - host: $DB_HOST
+          port: $DB_PORT
     type: $DB_TYPE
     name: $DB_NAME
     username: $DB_USER
