@@ -4,40 +4,23 @@ services:
     image: "ket4yii/php-censor:web"
     ports:
     - "80:80"
-    networks:
-    - default 
     depends_on:
-      psql:
-        condition: service_healthy
-      queue:
-        condition: service_started
+    - db
+    - queue
     env_file:
     - ./env/phpcensor.env
   worker:
     image: "ket4yii/php-censor:worker"
-    networks:
-    - default 
     depends_on:
-      psql:
-        condition: service_healthy
-      queue:
-        condition: service_started
+    - db
+    - queue
     env_file:
     - ./env/phpcensor.env
-  psql:
+  db:
     image: "postgres"
     user: postgres
-    networks:
-      default:
-        aliases:
-        - db
     env_file:
     - ./env/database.env
-    healthcheck:
-      test: psql -lqt | cut -d \| -f 1 | grep -qw $$POSTGRES_DB
-      interval: 10s
-      timeout: 10s
-      retries: 3
   queue:
     image: "schickling/beanstalkd"
     networks:
