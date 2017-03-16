@@ -94,9 +94,29 @@ Default values:
 
 In progress
 
-### Installing and extensions in container
+### Installing dependencies and extensions in container
 
 You can install your dependencies from script. Just pass it by docker volume to **/docker-init.d/install.sh**. You can install composer dependencies(e.g. plugins for PHPCensor) or php-extensions by *docker-php-ext-install* script(for further information check [official php docker repo](https://hub.docker.com/_/php/)).
+
+CLI:
+
+```
+docker run -d --net=phpcensor -v $PWD/my_install.sh:/docker-init.d/install.sh  -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor ket4yii/php-censor:worker
+```
+
+docker-compose:
+
+```
+...
+worker:
+  image: ket4yii/php-censor:worker
+  volumes:
+  - $PWD/my_install.sh:/docker-init.d/install.sh
+  env_file:
+  - ./env/phpcensor.env
+...
+```
+
 
 #### Example of install.sh
 
