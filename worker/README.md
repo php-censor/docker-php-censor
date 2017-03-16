@@ -22,7 +22,9 @@ beanstalkd and [web](https://github.com/ket4yii/docker-php-censor/tree/master/wo
 
 There are two ways how to configure phpcensor:
 
-* Pass environment variables in container.  * Move your config.yml by docker volume in /var/www/html/app/config.yml.  
+* Pass environment variables in container.  
+* Move your config.yml by docker volume in /var/www/html/app/config.yml.  
+
 By environment variables you can configure these values:
 
 ```
