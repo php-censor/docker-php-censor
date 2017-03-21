@@ -33,4 +33,6 @@ ENV SITE_URL=http://phpcensor.local
 ENV BEANSTALK_HOST=localhost
 ENV BEANSTALK_QUEUE_NAME=phpcensor
 
+EXPOSE 80
+
 ENTRYPOINT ["/entrypoint.sh"]
