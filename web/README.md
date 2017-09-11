@@ -1,4 +1,4 @@
-# PHPCensor web part
+# PHPCensor web-part
 
 ## Description
 
@@ -6,22 +6,22 @@ Web part of PHPCensor with nginx and php-fpm.
 
 ## How to use
 
-Sample run command (all needed containers like beanstald, worker and database are in a network):
+Sample run command (all needed containers like Beanstald, worker and database are in a network):
 
 ```
 docker network create phpcensor
 docker run -d -p 8080:80 --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e SITE_URL=http://phpcensor.local -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor ket4yii/php-censor:web
 ```
 
-Remeber, this container is web-part and includes only FPM and nginx, you should run database, 
-beanstalkd and [workers](https://github.com/ket4yii/docker-php-censor/tree/master/worker) to build your projects.
+Remember, this container is web-part and includes only FPM and Nginx, you should run database, 
+Beanstalkd and [workers](https://github.com/ket4yii/docker-php-censor/tree/master/worker) to build your projects.
 
 ### Configuration
 
 There are two ways how to configure phpcensor:
 
 * Pass environment variables in container.
-* Move your config.yml by docker volume in /var/www/html/app/config.yml.
+* Move your `config.yml` by docker volume in `/var/www/html/app/config.yml`.
 
 By environment variables you can configure these values:
 
@@ -84,9 +84,9 @@ php-censor:
 
 And specify admin user by these variables:
 
-* ADMIN_NAME (**default: admin**)
-* ADMIN_PASSWORD (**default: admin**)
-* ADMIN_EMAIL (**default: admin@php-censor.local**)
+* `ADMIN_NAME` (**default: admin**)
+* `ADMIN_PASSWORD` (**default: admin**)
+* `ADMIN_EMAIL` (**default: admin@php-censor.local**)
 
 Default values:
 

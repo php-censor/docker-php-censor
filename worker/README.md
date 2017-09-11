@@ -1,20 +1,20 @@
-# PHPCensor's worker
+# PHPCensor worker
 
 ## Description
 
-PHPCensor's worker.
+PHPCensor worker.
 
 ## How to use
 
-Sample run command (all needed containers like beanstald, webpart and database are in a network):
+Sample run command (all needed containers like Beanstald, web-part and database are in a network):
 
 ```
 docker network create phpcensor
 docker run -d --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor ket4yii/php-censor:worker
 ```
 
-Remeber, this container is worker, you should run database, 
-beanstalkd and [web](https://github.com/ket4yii/docker-php-censor/tree/master/worker) to build your projects.
+Remember, this container is worker, you should run database, 
+Beanstalkd and [web](https://github.com/ket4yii/docker-php-censor/tree/master/worker) to build your projects.
 
 *Also you can install your own dependencies, like php-extensions or composer deps, at start time. See below text for further information.*
 
@@ -23,7 +23,7 @@ beanstalkd and [web](https://github.com/ket4yii/docker-php-censor/tree/master/wo
 There are two ways how to configure phpcensor:
 
 * Pass environment variables in container.  
-* Move your config.yml by docker volume in /var/www/html/app/config.yml.  
+* Move your `config.yml` by docker volume in `/var/www/html/app/config.yml`.  
 
 By environment variables you can configure these values:
 
@@ -83,12 +83,12 @@ php-censor:
 
 You don't have to specify all parameters in worker. Minimal list of params is:
 
-* $DB_HOST
-* $DB_USER
-* $DB_PASS
-* $BEANSTALK_HOST
-* $BEANSTALK_QUEUE_NAME
-* $DB_TYPE
+* `$DB_HOST`
+* `$DB_USER`
+* `$DB_PASS`
+* `$BEANSTALK_HOST`
+* `$BEANSTALK_QUEUE_NAME`
+* `$DB_TYPE`
 
 Default values:
 
@@ -96,7 +96,7 @@ In progress
 
 ### Installing dependencies and extensions in container
 
-You can install your dependencies from script. Just pass it by docker volume to **/docker-init.d/install.sh**. You can install composer dependencies(e.g. plugins for PHPCensor) or php-extensions by *docker-php-ext-install* script(for further information check [official php docker repo](https://hub.docker.com/_/php/)).
+You can install your dependencies from script. Just pass it by docker volume to **`/docker-init.d/install.sh`**. You can install composer dependencies (e.g. plugins for PHPCensor) or php-extensions by *`docker-php-ext-install`* script (for further information check [official php docker repo](https://hub.docker.com/_/php/)).
 
 CLI:
 
@@ -117,7 +117,6 @@ worker:
 ...
 ```
 
-
 #### Example of install.sh
 
 ```
@@ -125,4 +124,3 @@ docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/u
 docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) gd mysqli 
 composer require ket4yii/phpci-deployer-plugin:^1.0
 ```
-
