@@ -1,4 +1,4 @@
-FROM php:7.0.15-alpine
+FROM php:7.2-alpine
 
 MAINTAINER Alexey Boyko <ket4yiit@gmail.com>
 
