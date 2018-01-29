@@ -10,11 +10,11 @@ Sample run command (all needed containers like Beanstald, worker and database ar
 
 ```
 docker network create phpcensor
-docker run -d -p 8080:80 --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e SITE_URL=http://phpcensor.local -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor ket4yii/php-censor:web
+docker run -d -p 8080:80 --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e SITE_URL=http://phpcensor.local -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor phpcensor/php-censor-web
 ```
 
 Remember, this container is web-part and includes only FPM and Nginx, you should run database, 
-Beanstalkd and [workers](https://github.com/ket4yii/docker-php-censor/tree/master/worker) to build your projects.
+Beanstalkd and [workers](https://github.com/php-censor/docker-php-censor/tree/master/worker) to build your projects.
 
 ### Configuration
 
@@ -79,7 +79,6 @@ php-censor:
           port: $LDAP_PORT
           base_dn: $LDAP_BASE_DN
           mail_attribute: $LDAP_MAIL_ATTRIBUTE
-
 ``` 
 
 And specify admin user by these variables:

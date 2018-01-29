@@ -1,13 +1,13 @@
 version: '2.1'
 services:
   web:
-    image: "ket4yii/php-censor:web"
+    image: "phpcensor/php-censor-web:latest"
     ports:
     - "80:80"
     env_file:
     - ./env/phpcensor.env
   worker:
-    image: "ket4yii/php-censor:worker"
+    image: "phpcensor/php-censor-worker:latest"
     env_file:
     - ./env/phpcensor.env
   db:
