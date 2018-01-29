@@ -1,15 +1,17 @@
 # PHP Censor docker image
-![Image stars](https://img.shields.io/docker/stars/ket4yii/php-censor.svg)
-![Image pulls](https://img.shields.io/docker/pulls/ket4yii/php-censor.svg)
+![Web image stars](https://img.shields.io/docker/stars/phpcensor/php-censor-web.svg)
+![Worker image stars](https://img.shields.io/docker/stars/phpcensor/php-censor-worker.svg)
+![Web image pulls](https://img.shields.io/docker/pulls/phpcensor/php-censor-web.svg)
+![Web image pulls](https://img.shields.io/docker/pulls/phpcensor/php-censor-worker.svg)
 
 ## Description
 
-[Docker containers for PHP Censor](https://hub.docker.com/r/ket4yii/php-censor/) with installed, configured source code 
+[Docker containers for PHP Censor](https://hub.docker.com/u/phpcensor/) with installed, configured source code 
 and dependencies, configurable by envs `config.yml`. It has separated into two containers parts: web and worker for 
 better scalability.
 
-See [worker](https://github.com/ket4yii/docker-php-censor/tree/master/worker) and 
-[web](https://github.com/ket4yii/docker-php-censor/tree/master/web) to get information about using. Or you can use 
+See [worker](https://github.com/php-censor/docker-php-censor/tree/master/worker) and 
+[web](https://github.com/php-censor/docker-php-censor/tree/master/web) to get information about using. Or you can use 
 docker-compose file that is described below to run a whole stack.
 
 ## Docker compose

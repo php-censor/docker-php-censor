@@ -10,11 +10,11 @@ Sample run command (all needed containers like Beanstald, web-part and database 
 
 ```
 docker network create phpcensor
-docker run -d --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor ket4yii/php-censor:worker
+docker run -d --net=phpcensor -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor phpcensor/php-censor-worker
 ```
 
 Remember, this container is worker, you should run database, 
-Beanstalkd and [web](https://github.com/ket4yii/docker-php-censor/tree/master/worker) to build your projects.
+Beanstalkd and [web](https://github.com/php-censor/docker-php-censor/tree/master/worker) to build your projects.
 
 *Also you can install your own dependencies, like php-extensions or composer deps, at start time. See below text for further information.*
 
@@ -101,7 +101,7 @@ You can install your dependencies from script. Just pass it by docker volume to 
 CLI:
 
 ```
-docker run -d --net=phpcensor -v $PWD/my_install.sh:/docker-init.d/install.sh  -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor ket4yii/php-censor:worker
+docker run -d --net=phpcensor -v $PWD/my_install.sh:/docker-init.d/install.sh  -e DB_HOST=db -e DB_USER=phpcensor -e DB_PASS=changeme -e DB_NAME=phpcensor -e BEANSTALK_HOST=beanstalk -e BEANSTALK_QUEUE_NAME=phpcensor phpcensor/php-censor-worker
 ```
 
 docker-compose:
@@ -109,7 +109,7 @@ docker-compose:
 ```
 ...
 worker:
-  image: ket4yii/php-censor:worker
+  image: phpcensor/php-censor-worker
   volumes:
   - $PWD/my_install.sh:/docker-init.d/install.sh
   env_file:
@@ -122,5 +122,5 @@ worker:
 ```
 docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) gd mysqli 
-composer require ket4yii/phpci-deployer-plugin:^1.0
+composer require php-censor/php-censor-deployer-plugin:^1.0
 ```
