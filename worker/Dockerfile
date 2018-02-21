@@ -2,7 +2,7 @@ FROM php:7.0.15-alpine
 
 MAINTAINER Alexey Boyko <ket4yiit@gmail.com>
 
-ENV PHPCENSOR_VERSION=0.20.0
+ENV PHPCENSOR_VERSION=0.21.0
 
 WORKDIR /var/www/html
 
