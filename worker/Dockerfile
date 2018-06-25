@@ -7,7 +7,7 @@ ENV PHPCENSOR_VERSION=0.22.0
 WORKDIR /var/www/html
 
 RUN apk update && \
-    apk add git openssh postgresql-dev gettext && \
+    apk add git openssh postgresql-dev gettext zlib-dev && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 
