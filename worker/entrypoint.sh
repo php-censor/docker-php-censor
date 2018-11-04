@@ -47,7 +47,7 @@ main() {
         echo "Installing is done."
     fi
     
-    ./bin/console php-censor:worker
+    ./bin/console php-censor:worker --periodical-work
 }
 
 main
