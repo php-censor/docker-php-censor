@@ -21,4 +21,3 @@ services:
       default:
         aliases:
         - beanstalk
-
