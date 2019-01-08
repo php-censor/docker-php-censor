@@ -1,6 +1,6 @@
 FROM php:7.1-alpine
 
-MAINTAINER Alexey Boyko <ket4yiit@gmail.com>
+MAINTAINER Dmitry Khomutov <poisoncorpsee@gmail.com>
 
 ENV PHPCENSOR_VERSION=1.0.0
 
