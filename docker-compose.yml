@@ -1,15 +1,21 @@
 version: '2.1'
 services:
   web:
+    #build: ./web
     image: "phpcensor/php-censor-web:latest"
     ports:
     - "80:80"
     env_file:
     - ./env/phpcensor.env
+    volumes:
+    - ./artifacts:/var/www/html/public/artifacts
   worker:
+    #build: ./worker
     image: "phpcensor/php-censor-worker:latest"
     env_file:
     - ./env/phpcensor.env
+    volumes:
+    - ./artifacts:/var/www/html/public/artifacts
   db:
     image: "postgres"
     user: postgres
