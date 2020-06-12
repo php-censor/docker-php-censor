@@ -6,12 +6,15 @@ ENV PHPCENSOR_VERSION=1.0.15
 
 WORKDIR /var/www/html
 
-RUN apk update && \
+RUN apk add --no-cache $PHPIZE_DEPS && \
+    apk update && \
     apk add git openssh postgresql-dev gettext zlib-dev && \
+    pecl install xdebug-2.5.0 && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 
-RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql zip
+RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql zip bcmath && \
+    docker-php-ext-enable xdebug
 
 RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/php-censor/php-censor.git .
 
