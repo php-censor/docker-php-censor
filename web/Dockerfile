@@ -8,8 +8,8 @@ WORKDIR /var/www/html
 
 RUN apk add --no-cache $PHPIZE_DEPS && \
     apk update && \
-    apk add git nginx openssh postgresql-dev openldap-dev gettext zlib-dev && \
-    pecl install xdebug-2.9.2 && \
+    apk add git nginx openssh postgresql-dev openldap-dev gettext zlib-dev libzip-dev && \
+    pecl install xdebug-2.9.8 && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 
