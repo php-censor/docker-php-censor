@@ -1,15 +1,15 @@
-FROM php:7.1-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 MAINTAINER Dmitry Khomutov <poisoncorpsee@gmail.com>
 
-ENV PHPCENSOR_VERSION=1.3.0
+ENV PHPCENSOR_VERSION=2.0.0
 
 WORKDIR /var/www/html
 
 RUN apk add --no-cache $PHPIZE_DEPS && \
     apk update && \
     apk add git nginx openssh postgresql-dev openldap-dev gettext zlib-dev && \
-    pecl install xdebug-2.5.0 && \
+    pecl install xdebug-2.9.2 && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 

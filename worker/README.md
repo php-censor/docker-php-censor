@@ -20,7 +20,7 @@ Beanstalkd and [web](https://github.com/php-censor/docker-php-censor/tree/master
 
 ### Configuration
 
-There are two ways how to configure phpcensor:
+There are two ways how to configure PHP Censor:
 
 * Pass environment variables in container.  
 * Move your `config.yml` by docker volume in `/var/www/html/app/config.yml`.  
@@ -30,22 +30,22 @@ By environment variables you can configure these values:
 ```
 # All values with $ will be substituted by your environment variables
 
-b8:
-  database: servers:
+php-censor:
+  database:
+    servers:
       read:
         - host: $DB_HOST
-          port: **Will be taken from $DB_HOST**
+        port: **Will be taken from $DB_HOST**
       write:
         - host: $DB_HOST
-          port: **Will be taken from $DB_HOST**
+        port: **Will be taken from $DB_HOST**
     type: $DB_TYPE
     name: $DB_NAME
     username: $DB_USER
     password: $DB_PASS
-php-censor:
   language: en
   per_page: 10
-  url:      '$SITE_URL'
+  url: '$SITE_URL'
   email_settings:
     from_address: $SMTP_FROM
     smtp_address: $SMTP_HOST

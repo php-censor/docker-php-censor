@@ -1,4 +1,4 @@
-b8:
+php-censor:
   database:
     servers:
       read:
@@ -11,10 +11,9 @@ b8:
     name: $DB_NAME
     username: $DB_USER
     password: $DB_PASS
-php-censor:
   language: en
   per_page: 10
-  url:      '$SITE_URL'
+  url: '$SITE_URL'
   email_settings:
     from_address: $SMTP_FROM
     smtp_address: $SMTP_HOST
