@@ -2,7 +2,7 @@ FROM php:7.1-alpine
 
 MAINTAINER Dmitry Khomutov <poisoncorpsee@gmail.com>
 
-ENV PHPCENSOR_VERSION=1.3.0
+ENV PHPCENSOR_VERSION=1.3.1
 
 WORKDIR /var/www/html
 
