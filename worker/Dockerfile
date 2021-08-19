@@ -16,7 +16,7 @@ RUN apk add --no-cache $PHPIZE_DEPS && \
 RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql zip bcmath && \
     docker-php-ext-enable xdebug
 
-RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/php-censor/php-censor.git .
+RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/php-censor/php-censor.git . && chmod +x ./bin/console
 
 RUN composer install
 

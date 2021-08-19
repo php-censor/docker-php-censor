@@ -33,11 +33,11 @@ parse_args() {
 # Entrypoint
 main() {
     parse_args
-    
+
     if [ ! -f ./app/config.yml ]; then
         envsubst < /config.tmpl.yml > ./app/config.yml
     fi
-    
+
     wait_for_external_services
 
 
