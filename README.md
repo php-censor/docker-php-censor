@@ -26,13 +26,13 @@ You can use docker-compose file (`docker-compose.yml`) that is described below t
 Default way with PostgreSQL database:
 
 ```
-docker-compose -f docker-compose.yml up -d
+docker-compose -f docker-compose.yml up -d (--build)
 ```
 
 Or if you want to use it with MySQL (MariaDB):
 
 ```
-docker-compose -f docker-compose.mysql.yml up -d
+docker-compose -f docker-compose.mysql.yml up -d (--build)
 ```
 
 If you want to up more worker just use this command, when the PHP Censor stack is already started (but you can do it on
