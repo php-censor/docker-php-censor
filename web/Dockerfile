@@ -16,7 +16,7 @@ RUN apk add --no-cache $PHPIZE_DEPS && \
 RUN docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo) pdo pdo_mysql pdo_pgsql ldap zip bcmath && \
     docker-php-ext-enable xdebug
 
-RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/php-censor/php-censor.git .
+RUN git clone -b $PHPCENSOR_VERSION --single-branch --depth 1 https://github.com/php-censor/php-censor.git . && chmod +x ./bin/console
 
 RUN composer install
 
@@ -32,7 +32,7 @@ ENV DB_TYPE=mysql
 ENV DB_NAME=phpcensor
 ENV DB_USER=phpcensor
 ENV DB_PASS=changethepass
-ENV SITE_URL=http://phpcensor.local
+ENV SITE_URL=http://phpcensor.localhost
 ENV BEANSTALK_HOST=localhost
 ENV BEANSTALK_QUEUE_NAME=phpcensor
 
